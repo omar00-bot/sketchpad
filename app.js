@@ -1,6 +1,8 @@
 const boxContainer = document.querySelector(`.boxContainer`);
 const sizeRange = document.querySelector(`#sizeRange`);
 const colorPicker = document.querySelector(`#color-picker`);
+const clearButton = document.querySelector(`.clear-button`);
+
 
 // Disable dragging in canvas
 boxContainer.addEventListener(`dragstart`, (event) => {
@@ -32,6 +34,15 @@ sizeRange.addEventListener("input", (event) => {
   // Create new grid with updated size
   createGrid(gridSize);
 });
+
+// Eventlistener for button to clear grids
+clearButton.addEventListener(`click`, () => {
+  const box = document.querySelectorAll(`.box`);
+  box.forEach(element => {
+    element.style.backgroundColor = ``;
+  });
+})
+
 
 // Function to create grids
 function createGrid(gridSize) {

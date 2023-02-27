@@ -37,10 +37,25 @@ div.box{
   background-color: rgba(128, 128, 128, 0.658);
   transition: 0.4s;
 }
+.range-container{
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 0.5rem;
+}
 .color-selector{
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    margin-top: 2rem;
+    margin: 2rem auto;
     gap: 1rem;
+}
+.clear-button-container{
+    display: flex;
+    justify-content: center;
+}
+button{
+    color: black;
+    padding: 0.5rem 5rem;
+    border-radius: 3rem;
 }
