@@ -1,49 +1,73 @@
 const boxContainer = document.querySelector(`.boxContainer`);
 const sizeRange = document.querySelector(`#sizeRange`);
- 
-let drawing = false;
+const colorPicker = document.querySelector(`#color-picker`);
+
+// Disable dragging in canvas
+boxContainer.addEventListener(`dragstart`, (event) => {
+  event.preventDefault();
+});
+
+// Initialize mousedown is false
+let isMousedown = false;
 // Initialize grid
 let gridSize = 16;
-createGrid(gridSize)
+createGrid(gridSize);
+// Initialize color
+let selectedColor = `black`
 
+// Eventlistener for color input
+colorPicker.addEventListener("input", () => {
+  selectedColor = colorPicker.value;
+});
+
+// Listen to changes of the slider
 sizeRange.addEventListener("input", (event) => {
   // Get new grid size from range input value
   gridSize = parseInt(event.target.value);
-  console.log(gridSize)
-  document.querySelector(`.grid-size`).textContent = `${gridSize} X ${gridSize} `;
+  document.querySelector(
+    `.grid-size`
+  ).textContent = `${gridSize} X ${gridSize} `;
   // Remove existing grid items
   boxContainer.innerHTML = "";
   // Create new grid with updated size
   createGrid(gridSize);
 });
 
-function createGrid(gridSize){
-
+// Function to create grids
+function createGrid(gridSize) {
+  // Set grid-template-columns and grid-template-rows based on size
   boxContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
   boxContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 
-for (let i = 0; i < (gridSize*gridSize); i++) {
-  const div = document.createElement(`div`);
-  div.classList.add(`box`);
-  div.addEventListener(`mousedown`, paint);
-  div.addEventListener(`mousemove`, (e) => {if (drawing) paint(e)});
-  div.addEventListener(`mouseup`, () => drawing = false);
-  div.addEventListener(`mouseover`, trail);
-  div.addEventListener(`dragstart`, (event) => {
-    event.preventDefault();
-  });
-  boxContainer.appendChild(div);
-}
+  // Create grid items
+  for (let i = 0; i < gridSize * gridSize; i++) {
+    const div = document.createElement(`div`);
+    div.classList.add(`box`);
+    // Add listener for mousedown event and start changiing background
+    div.addEventListener(`mousedown`, paint);
+    // Add listener when mouse is moving while mousedown
+    div.addEventListener(`mousemove`, (e) => {
+      // Check if mousedown
+      if (isMousedown) paint(e);
+    });
+    // Add listener for event mouseup to stop isMousedown
+    div.addEventListener(`mouseup`, () => (isMousedown = false));
+    // Add listener for mouse over and add hover effect
+    div.addEventListener(`mouseover`, trail);
+    boxContainer.appendChild(div);
+  }
 }
 
+// Function to change background
 function paint(e) {
-  drawing = true;
-  e.target.style.backgroundColor = `black`;
+  isMousedown = true;
+  e.target.style.backgroundColor = selectedColor;
 }
 
-
+// Function for hover effect of mouse while mouseover
 function trail(e) {
-  if (drawing) {
+  // To not hover while isMousedown
+  if (isMousedown) {
     paint(e);
   } else {
     e.target.classList.add(`hover`);

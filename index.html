@@ -12,8 +12,17 @@
     <h1 class="title">PIXEL ART</h1>
     <div class="container">
         <div>
-            <input type="range" id="sizeRange" min="2" max="100" value="16">
-            <p>Grid Size: <span class="grid-size">16 X 16</span></p>
+            <div>
+                <p>Grid Size: <span class="grid-size">16 X 16</span></p>
+                <input type="range" id="sizeRange" min="2" max="100" value="16">
+            </div>
+            <div class="color-selector">
+                <p>Color Selector: </p>
+                <input type="color" id="color-picker">
+            </div>
+            <div class="clear">
+                <button>CLEAR</button>
+            </div>
         </div>
         <div class="boxContainer">
         </div>
