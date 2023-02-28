@@ -18,6 +18,9 @@ body {
   justify-content: center;
   gap: 15%;
 }
+.settings-container{
+    width: 13rem;
+}
 .boxContainer {
   height: 550px;
   width: 550px;
@@ -37,11 +40,20 @@ div.box{
   background-color: rgba(128, 128, 128, 0.658);
   transition: 0.4s;
 }
+.mode-container{
+  margin-bottom: 2rem;
+}
 .range-container{
 display: flex;
 flex-direction: column;
 justify-content: center;
 gap: 0.5rem;
+}
+.eraser-container{
+  margin-bottom: 2rem;
+}
+.rainbow-container{
+  margin-bottom: 2rem;
 }
 .color-selector{
     display: flex;
@@ -53,9 +65,15 @@ gap: 0.5rem;
 .clear-button-container{
     display: flex;
     justify-content: center;
+    margin-bottom: 2rem;
 }
 button{
     color: black;
-    padding: 0.5rem 5rem;
+    padding: 0.5rem;
     border-radius: 3rem;
+    width: 100%;
+    background-color: white;
+}
+.toggle{
+    background-color: blue;
 }

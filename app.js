@@ -2,7 +2,10 @@ const boxContainer = document.querySelector(`.boxContainer`);
 const sizeRange = document.querySelector(`#sizeRange`);
 const colorPicker = document.querySelector(`#color-picker`);
 const clearButton = document.querySelector(`.clear-button`);
-
+const eraser = document.querySelector(`.eraser`);
+const modeContainer = document.querySelector(`.mode`);
+const modeSelector = document.querySelector(`.mode-selection`);
+const rainbowMode = document.querySelector(`.rainbow`);
 
 // Disable dragging in canvas
 boxContainer.addEventListener(`dragstart`, (event) => {
@@ -15,11 +18,34 @@ let isMousedown = false;
 let gridSize = 16;
 createGrid(gridSize);
 // Initialize color
-let selectedColor = `black`
+let selectedColor = `black`;
+// Initialize mode
+let mode = `Draw`;
 
 // Eventlistener for color input
 colorPicker.addEventListener("input", () => {
   selectedColor = colorPicker.value;
+});
+
+// Eventlistener for color input
+rainbowMode.addEventListener(`click`, () => {
+  if (mode === `rainbow`) {
+    mode = `Draw`;
+  } else {
+    mode = `Rainbow`;
+  }
+  modeSelector.textContent = `${mode}`;
+});
+
+// Eventlistener for eraser
+eraser.addEventListener(`click`, () => {
+  if (mode === `Draw` || mode === `Rainbow`) {
+    mode = `Eraser`;
+  } else {
+    mode = `Draw`;
+  }
+  // Change mode in DOM
+  modeSelector.textContent = `${mode}`;
 });
 
 // Listen to changes of the slider
@@ -28,7 +54,7 @@ sizeRange.addEventListener("input", (event) => {
   gridSize = parseInt(event.target.value);
   document.querySelector(
     `.grid-size`
-  ).textContent = `${gridSize} X ${gridSize} `;
+  ).textContent = `${gridSize} X ${gridSize}`;
   // Remove existing grid items
   boxContainer.innerHTML = "";
   // Create new grid with updated size
@@ -38,11 +64,10 @@ sizeRange.addEventListener("input", (event) => {
 // Eventlistener for button to clear grids
 clearButton.addEventListener(`click`, () => {
   const box = document.querySelectorAll(`.box`);
-  box.forEach(element => {
+  box.forEach((element) => {
     element.style.backgroundColor = ``;
   });
-})
-
+});
 
 // Function to create grids
 function createGrid(gridSize) {
@@ -57,7 +82,7 @@ function createGrid(gridSize) {
     // Add listener for mousedown event and start changiing background
     div.addEventListener(`mousedown`, paint);
     // Add listener when mouse is moving while mousedown
-    div.addEventListener(`mousemove`, (e) => {
+    div.addEventListener(`mouseenter`, (e) => {
       // Check if mousedown
       if (isMousedown) paint(e);
     });
@@ -71,8 +96,27 @@ function createGrid(gridSize) {
 
 // Function to change background
 function paint(e) {
-  isMousedown = true;
-  e.target.style.backgroundColor = selectedColor;
+  // Draw mode that used color in color picker
+  if (mode === `Draw`) {
+    isMousedown = true;
+    e.target.style.backgroundColor = selectedColor;
+  }
+  // Eraser mode
+  else if (mode === `Eraser`) {
+    isMousedown = true;
+    e.target.style.backgroundColor = ``;
+  }
+  // Rainbow mode
+  else if (mode === `Rainbow`) {
+    const hexChars = "0123456789ABCDEF";
+    let hex = `#`;
+    for (let i = 0; i < 6; i++) {
+      hex += hexChars[Math.floor(Math.random() * hexChars.length)];
+    }
+    let randomColor = hex;
+    isMousedown = true;
+    e.target.style.backgroundColor = randomColor;
+  }
 }
 
 // Function for hover effect of mouse while mouseover
