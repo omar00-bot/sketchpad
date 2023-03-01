@@ -12,9 +12,10 @@
     <h1 class="title">PIXEL ART</h1>
     <div class="container">
         <div class="settings-container">
+            <h2 class="tools">TOOLS</h2>
             <div class="range-container"> 
                 <p>Grid Size: <span class="grid-size">16 X 16</span></p>
-                <input type="range" id="sizeRange" min="2" max="100" value="16">
+                <input type="range" id="size-range" min="2" max="100" value="16">
             </div>
             <div class="color-selector">
                 <p>Color Selector: </p>
@@ -24,13 +25,16 @@
                 <p class="mode">Mode Selection: <span class="mode-selection">Draw</span></p>
             </div>
             <div class="eraser-container">
-                <button class="eraser">ERASER</button>
+                <button id="Eraser" class="toggle-btn">ERASER</button>
             </div>
             <div class="rainbow-container">
-                <button class="rainbow">RAINBOW</button>
+                <button id="Rainbow" class="toggle-btn">RAINBOW</button>
+            </div>
+            <div class="lighten-container">
+                <button id="Lighten" class="toggle-btn">LIGHTEN</button>
             </div>
             <div class="clear-button-container">
-                <button class="clear-button">CLEAR</button>
+                <button id="Clear">CLEAR</button>
             </div>
         </div>
         <div class="boxContainer">

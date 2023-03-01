@@ -34,8 +34,8 @@ div.box{
     background-color: white;
     border: 1px solid #2e2b2b57 !important;
     box-shadow: 0 0 0 1px #5a5454a8 !important;
+    cursor: url(image/cursor.cur),auto;
 }
-
 .box.hover {
   background-color: rgba(128, 128, 128, 0.658);
   transition: 0.4s;
@@ -43,16 +43,29 @@ div.box{
 .mode-container{
   margin-bottom: 2rem;
 }
+.tools{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+#color-picker{
+  cursor: pointer;
+}
 .range-container{
 display: flex;
 flex-direction: column;
 justify-content: center;
 gap: 0.5rem;
 }
+#size-range{
+  cursor: pointer;
+}
 .eraser-container{
   margin-bottom: 2rem;
 }
 .rainbow-container{
+  margin-bottom: 2rem;
+}
+.lighten-container{
   margin-bottom: 2rem;
 }
 .color-selector{
@@ -68,12 +81,22 @@ gap: 0.5rem;
     margin-bottom: 2rem;
 }
 button{
-    color: black;
+    color: #000000;
     padding: 0.5rem;
     border-radius: 3rem;
     width: 100%;
     background-color: white;
+    border: 2px solid blue;
+    cursor: pointer;
 }
-.toggle{
-    background-color: blue;
+.active{
+  background-color: blue;
+  color: white;
+  border: 2px solid white;
+}
+button:hover{
+  -webkit-transform: scale(1.18);
+  -ms-transform: scale(1.18);
+  transform: scale(1.18);
+  transition: 0.3s ease;
 }

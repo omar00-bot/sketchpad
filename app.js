@@ -1,11 +1,13 @@
 const boxContainer = document.querySelector(`.boxContainer`);
-const sizeRange = document.querySelector(`#sizeRange`);
+const sizeRange = document.querySelector(`#size-range`);
 const colorPicker = document.querySelector(`#color-picker`);
-const clearButton = document.querySelector(`.clear-button`);
-const eraser = document.querySelector(`.eraser`);
+const clearButton = document.querySelector(`#Clear`);
+const eraserMode = document.querySelector(`#Eraser`);
 const modeContainer = document.querySelector(`.mode`);
 const modeSelector = document.querySelector(`.mode-selection`);
-const rainbowMode = document.querySelector(`.rainbow`);
+const rainbowMode = document.querySelector(`#Rainbow`);
+const lightenMode = document.querySelector(`#Lighten`);
+const buttons = document.querySelectorAll(".toggle-btn");
 
 // Disable dragging in canvas
 boxContainer.addEventListener(`dragstart`, (event) => {
@@ -18,7 +20,7 @@ let isMousedown = false;
 let gridSize = 16;
 createGrid(gridSize);
 // Initialize color
-let selectedColor = `black`;
+let selectedColor = `#000000`;
 // Initialize mode
 let mode = `Draw`;
 
@@ -27,26 +29,31 @@ colorPicker.addEventListener("input", () => {
   selectedColor = colorPicker.value;
 });
 
-// Eventlistener for color input
-rainbowMode.addEventListener(`click`, () => {
-  if (mode === `rainbow`) {
-    mode = `Draw`;
-  } else {
-    mode = `Rainbow`;
+// Code to toggle between buttons, one button at a time
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    // Remove "active" class from all buttons
+    buttons.forEach(btn => {
+      if (btn !== button) {
+        btn.classList.remove("active");
+      }
+    });
+
+    // Brings mode back to Draw if its already toggled
+    if(mode === `${button.id}`){
+      mode = `Draw`
+      button.classList.toggle("active");
+    }
+    // Sets the mode on base on the selection given that it is untoggled
+    else {
+    mode = `${button.id}`;
+    button.classList.toggle("active");
   }
+  // Updates the Mode Selection
   modeSelector.textContent = `${mode}`;
+});
 });
 
-// Eventlistener for eraser
-eraser.addEventListener(`click`, () => {
-  if (mode === `Draw` || mode === `Rainbow`) {
-    mode = `Eraser`;
-  } else {
-    mode = `Draw`;
-  }
-  // Change mode in DOM
-  modeSelector.textContent = `${mode}`;
-});
 
 // Listen to changes of the slider
 sizeRange.addEventListener("input", (event) => {
@@ -114,8 +121,14 @@ function paint(e) {
       hex += hexChars[Math.floor(Math.random() * hexChars.length)];
     }
     let randomColor = hex;
+    console.log(randomColor)
     isMousedown = true;
     e.target.style.backgroundColor = randomColor;
+  }
+  else if (mode === `Lighten`){
+    isMousedown = true;
+    const currentColor = e.target.style.backgroundColor;
+    e.target.style.backgroundColor = `${lightenColor(currentColor)}`;
   }
 }
 
@@ -130,4 +143,18 @@ function trail(e) {
       e.target.classList.remove(`hover`);
     });
   }
+}
+
+function lightenColor(color){
+ const rgbColor = color;
+ console.log(rgbColor)
+  const newRgbColor = {
+    r: Math.min(rgbColor.r - 20, 255),
+    g: Math.min(rgbColor.g - 20, 255),
+    b: Math.min(rgbColor.b - 20, 255)
+  };
+  console.log(newRgbColor)
+return {
+ newRgbColor
+}
 }
