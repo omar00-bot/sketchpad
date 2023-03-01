@@ -86,14 +86,9 @@ function createGrid(gridSize) {
   for (let i = 0; i < gridSize * gridSize; i++) {
     const div = document.createElement(`div`);
     div.classList.add(`box`);
-    // Add listener for mousedown event and start changiing background
+    // Add listener for mousedown event and start changing background
     div.addEventListener(`mousedown`, paint);
-    // Add listener when mouse is moving while mousedown
-    div.addEventListener(`mouseenter`, (e) => {
-      // Check if mousedown
-      if (isMousedown) paint(e);
-    });
-    // Add listener for event mouseup to stop isMousedown
+    // Add listener for event mouseup to stop changing background
     div.addEventListener(`mouseup`, () => (isMousedown = false));
     // Add listener for mouse over and add hover effect
     div.addEventListener(`mouseover`, trail);
@@ -121,7 +116,6 @@ function paint(e) {
       hex += hexChars[Math.floor(Math.random() * hexChars.length)];
     }
     let randomColor = hex;
-    console.log(randomColor)
     isMousedown = true;
     e.target.style.backgroundColor = randomColor;
   }
@@ -146,15 +140,10 @@ function trail(e) {
 }
 
 function lightenColor(color){
- const rgbColor = color;
- console.log(rgbColor)
-  const newRgbColor = {
-    r: Math.min(rgbColor.r - 20, 255),
-    g: Math.min(rgbColor.g - 20, 255),
-    b: Math.min(rgbColor.b - 20, 255)
-  };
-  console.log(newRgbColor)
-return {
- newRgbColor
-}
+  const rgbValues = color.match(/\d+/g).map(Number);
+  const newRgbValues = rgbValues.map(value => Math.min(255, value + 25.5));
+  let newColor = `rgb(${newRgbValues.join(`,`)})`;
+  console.log(rgbValues)
+  console.log(newRgbValues)
+  return newColor
 }
