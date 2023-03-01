@@ -28,6 +28,7 @@ Learnings:
 - Conditionals
 - Loops
 - Array methods like searching in them
+- Learned new units like fr, vh, and vw
 - Deep understanding of events and function calling
 - Use some css grid for the canvas but I mainly style the page using flex
 - DOM manipulation (more DOM manipulation than the rock paper scissor game)
