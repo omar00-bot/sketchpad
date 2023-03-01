@@ -15,6 +15,7 @@ Features:
 - Clear canvas
 - Hover effect of mouse
 - Change cursor to a paint brush while in canvas
+- Responsive UI
 
 Technology used:
 - HTML
