@@ -1,47 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIXEL ART</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="image/cursor.cur" type="image/x-icon" />
     <script src="app.js" defer></script>
-</head>
-<body>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Golos+Text&family=Press+Start+2P&display=swap");
+    </style>
+  </head>
+  <body>
     <h1 class="title">PIXEL ART</h1>
     <div class="container">
-        <div class="settings-container">
-            <h2 class="tools">TOOLS</h2>
-            <div class="range-container"> 
-                <p>Grid Size: <span class="grid-size">16 X 16</span></p>
-                <input type="range" id="size-range" min="2" max="100" value="16">
-            </div>
-            <div class="color-selector">
-                <p>Color Selector: </p>
-                <input type="color" id="color-picker">
-            </div>
-            <div class="mode-container">
-                <p class="mode">Mode Selection: <span class="mode-selection">Draw</span></p>
-            </div>
-            <div class="eraser-container">
-                <button id="Eraser" class="toggle-btn">ERASER</button>
-            </div>
-            <div class="rainbow-container">
-                <button id="Rainbow" class="toggle-btn">RAINBOW</button>
-            </div>
-            <div class="lighten-container">
-                <button id="Lighten" class="toggle-btn">LIGHTEN</button>
-            </div>
-            <div class="darken-container">
-                <button id="Darken" class="toggle-btn">DARKEN</button>
-            </div>
-            <div class="clear-button-container">
-                <button id="Clear">CLEAR</button>
-            </div>
+      <div class="settings-container">
+        <h2 class="tools">TOOLS</h2>
+        <div class="range-container">
+          <p>Grid Size: <span class="grid-size">16 X 16</span></p>
+          <input type="range" id="size-range" min="2" max="100" value="16" />
         </div>
-        <div class="boxContainer">
+        <div class="color-selector">
+          <p>Color Selector:</p>
+          <input type="color" id="color-picker" />
         </div>
+        <div class="mode-container">
+          <p class="mode">
+            Mode Selection: <span class="mode-selection">Draw</span>
+          </p>
+        </div>
+        <div class="button-container">
+          <div class="eraser-container">
+            <button id="Eraser" class="toggle-btn">ERASER</button>
+          </div>
+          <div class="rainbow-container">
+            <button id="Rainbow" class="toggle-btn">RAINBOW</button>
+          </div>
+          <div class="lighten-container">
+            <button id="Lighten" class="toggle-btn">LIGHTEN</button>
+          </div>
+          <div class="darken-container">
+            <button id="Darken" class="toggle-btn">DARKEN</button>
+          </div>
+          <div class="clear-container">
+            <button id="Clear">CLEAR</button>
+          </div>
+        </div>
+      </div>
+      <div class="boxContainer"></div>
     </div>
-</body>
+    <div class="footer">
+      <p>
+        Copyright ©
+        <a href="https://github.com/omar00-bot">Omar A. Orga</a> 2023
+      </p>
+    </div>
+  </body>
 </html>

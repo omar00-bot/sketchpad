@@ -7,19 +7,21 @@
 body {
   min-height: 100vh;
   width: 100%;
-  background-color: #0c0b0bf1;
+  background-color: #0c0b0ba8;
+  font-family: "Golos Text", sans-serif;
 }
 .title {
   text-align: center;
   margin: 1rem auto;
+  font-family: "Press Start 2P", cursive;
 }
 .container {
   display: flex;
   justify-content: center;
   gap: 15%;
 }
-.settings-container{
-    width: 13rem;
+.settings-container {
+  width: 17rem;
 }
 .boxContainer {
   height: 550px;
@@ -27,79 +29,79 @@ body {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
-  border: 10px solid black;
+  border: 15px solid black;
 }
 
-div.box{
-    background-color: white;
-    border: 1px solid #2e2b2b57 !important;
-    box-shadow: 0 0 0 1px #5a5454a8 !important;
-    cursor: url(image/cursor.cur),auto;
+div.box {
+  background-color: white;
+  border: 1px solid #2e2b2b57 !important;
+  box-shadow: 0 0 0 1px #5a5454a8 !important;
+  cursor: url(image/cursor.cur), auto;
 }
 .box.hover {
-  background-color: rgba(128, 128, 128, 0.658);
+  background-color: rgba(255, 255, 255, 0.712);
   transition: 0.4s;
 }
-.mode-container{
+.mode-container {
   margin-bottom: 2rem;
+  font-size: 1.3rem;
 }
-.tools{
+.tools {
   text-align: center;
   margin-bottom: 2rem;
+  font-family: "Press Start 2P", cursive;
 }
-#color-picker{
+#color-picker {
   cursor: pointer;
 }
-.range-container{
-display: flex;
-flex-direction: column;
-justify-content: center;
-gap: 0.5rem;
+.range-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
 }
-#size-range{
+#size-range {
   cursor: pointer;
 }
-.eraser-container{
-  margin-bottom: 2rem;
+.color-selector {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 2rem auto;
+  gap: 1rem;
 }
-.rainbow-container{
-  margin-bottom: 2rem;
+button {
+  color: #000000;
+  padding: 0.5rem;
+  border-radius: 3rem;
+  width: 100%;
+  background-color: white;
+  border: 2px solid blue;
+  cursor: pointer;
+  font-weight: 1000;
+  font-size: 1.5rem;
 }
-.lighten-container{
-  margin-bottom: 2rem;
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-.darken-container{
-  margin-bottom: 2rem;
-}
-.color-selector{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin: 2rem auto;
-    gap: 1rem;
-}
-.clear-button-container{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-button{
-    color: #000000;
-    padding: 0.5rem;
-    border-radius: 3rem;
-    width: 100%;
-    background-color: white;
-    border: 2px solid blue;
-    cursor: pointer;
-}
-.active{
+.active {
   background-color: blue;
   color: white;
   border: 2px solid white;
 }
-button:hover{
+button:hover {
   -webkit-transform: scale(1.18);
   -ms-transform: scale(1.18);
   transform: scale(1.18);
   transition: 0.3s ease;
+}
+.footer {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+a:link {
+  text-decoration: none;
 }
