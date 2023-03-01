@@ -3,12 +3,8 @@ const sizeRange = document.querySelector(`#size-range`);
 const colorPicker = document.querySelector(`#color-picker`);
 const clearButton = document.querySelector(`#Clear`);
 const eraserMode = document.querySelector(`#Eraser`);
-const modeContainer = document.querySelector(`.mode`);
 const modeSelector = document.querySelector(`.mode-selection`);
-const rainbowMode = document.querySelector(`#Rainbow`);
-const lightenMode = document.querySelector(`#Lighten`);
 const buttons = document.querySelectorAll(".toggle-btn");
-
 // Disable dragging in canvas
 boxContainer.addEventListener(`dragstart`, (event) => {
   event.preventDefault();
@@ -70,8 +66,11 @@ sizeRange.addEventListener("input", (event) => {
 
 // Eventlistener for button to clear grids
 clearButton.addEventListener(`click`, () => {
+  // Querryselectorall to select all .box elements and return it as an array
   const box = document.querySelectorAll(`.box`);
+  // Handles the array (forEach)
   box.forEach((element) => {
+    // change the background of div as null
     element.style.backgroundColor = ``;
   });
 });
@@ -103,26 +102,34 @@ function paint(e) {
     isMousedown = true;
     e.target.style.backgroundColor = selectedColor;
   }
-  // Eraser mode
-  else if (mode === `Eraser`) {
-    isMousedown = true;
-    e.target.style.backgroundColor = ``;
-  }
   // Rainbow mode
   else if (mode === `Rainbow`) {
+    // String that contains all the posible hex codes
     const hexChars = "0123456789ABCDEF";
     let hex = `#`;
+    // Choose a random element from hexChars and iterate them 6 times to produce code something like this (#12A45F)
     for (let i = 0; i < 6; i++) {
       hex += hexChars[Math.floor(Math.random() * hexChars.length)];
     }
-    let randomColor = hex;
     isMousedown = true;
-    e.target.style.backgroundColor = randomColor;
+    e.target.style.backgroundColor = hex;
   }
-  else if (mode === `Lighten`){
+    // Lighten mode, calls the lightenColor function to lighten the color 
+  else if (mode === `Lighten`) {
     isMousedown = true;
     const currentColor = e.target.style.backgroundColor;
     e.target.style.backgroundColor = `${lightenColor(currentColor)}`;
+  } 
+    // Darken mode, calls the darkenColor function to darken the color
+  else if (mode === `Darken`) {
+    isMousedown = true;
+    const currentColor = e.target.style.backgroundColor;
+    e.target.style.backgroundColor = `${darkenColor(currentColor)}`;
+  }
+  // Else choose to erase 
+  else {
+    isMousedown = true;
+    e.target.style.backgroundColor = ``;
   }
 }
 
@@ -139,9 +146,31 @@ function trail(e) {
   }
 }
 
+// Function to lighten color
 function lightenColor(color){
+  // .match() searches for a match and return it as string in array format [`0`,`0`,`0`]
+  // `/ /g` is for global search that searches all posible occurence instead of first occurence
+  // \d+ is for searching the digits, the + there is to return all the digits grouped together
+  // .map() is to change the number in string to number as digits [0,0,0]
   const rgbValues = color.match(/\d+/g).map(Number);
+  // Math.min is to choose for the numbers whose the minimum of the two, if its more than 255 it returns 255
   const newRgbValues = rgbValues.map(value => Math.min(255, value + 25.5));
+  // .join() is responsible in joining the items in the array into the string `rgb(0,0,0)`
+  let newColor = `rgb(${newRgbValues.join(`,`)})`;
+  console.log(rgbValues)
+  console.log(newRgbValues)
+  return newColor
+}
+
+function darkenColor(color){
+  // .match() searches for a match and return it as string in array format [`0`,`0`,`0`]
+  // `/ /g` is for global search that searches all posible occurence instead of first occurence
+  // \d+ is for searching the digits, the + there is to return all the digits grouped together
+  // .map() is to change the number in string to number as digits [0,0,0]
+  const rgbValues = color.match(/\d+/g).map(Number);
+  // Math.max is to choose for the numbers whose the maximum of the two, if its less than 0 it returns 0
+  const newRgbValues = rgbValues.map(value => Math.max(0, value - 25.5));
+  // .join() is responsible in joining the items in the array into the string `rgb(0,0,0)`
   let newColor = `rgb(${newRgbValues.join(`,`)})`;
   console.log(rgbValues)
   console.log(newRgbValues)
