@@ -1,7 +1,7 @@
 # sketchpad
 Project like a sketchpad or Etch-A-Sketch for The Odin Project
 
-PIXEL ARTS
+PIXEL ART
 
 <img src="image/PIXEL ART.png" alt="PIXEL ART" srcset="">
 
@@ -12,7 +12,7 @@ Features:
 - Rainbow Color
 - Lighten
 - Darken
-- Clear canvas'
+- Clear canvas
 - Hover effect of mouse
 - Change cursor to a paint brush while in canvas
 
