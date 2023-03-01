@@ -1,7 +1,7 @@
 # sketchpad
 Project like a sketchpad or Etch-A-Sketch for The Odin Project
 
-PIXEL ART
+<h1 style="font-size: 2rem; text-align: center; font-weight: 1000;">PIXEL ART</h1>
 
 <img src="image/PIXEL ART.png" alt="PIXEL ART" srcset="">
 
